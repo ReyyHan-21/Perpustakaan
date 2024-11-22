@@ -5,13 +5,16 @@ class BookListPage extends StatefulWidget {
   const BookListPage({super.key});
 
   @override
+  // ignore: library_private_types_in_public_api
   _BookListPageState createState() => _BookListPageState();
 }
 
 class _BookListPageState extends State<BookListPage> {
-  List<Map<String, dynamic>> books = []; //(books) adalah nama database di dalam supabase
+  List<Map<String, dynamic>> books =
+      []; //(books) adalah nama database di dalam supabase
 
-  void initstate() {
+  @override
+  void initState() {
     super.initState();
     fetchBooks();
   }
@@ -22,7 +25,8 @@ class _BookListPageState extends State<BookListPage> {
         .select(); // fungsi yang akan digunakan untuk mengambil data dari database (bisa disesuai dengan kebutuhan)
 
     setState(() {
-      books = List<Map<String, dynamic>>.from(response); // digunakan untuk merespon hasil dari pemanggilan data dari database
+      books = List<Map<String, dynamic>>.from(
+          response); // digunakan untuk merespon hasil dari pemanggilan data dari database
     });
   }
 
@@ -41,13 +45,15 @@ class _BookListPageState extends State<BookListPage> {
         actions: [
           IconButton(
             icon: const Icon(Icons.refresh),
-            onPressed: fetchBooks, // Ketika tombol ditekan, panggil fungsi fetchBooks(merespon hasil dari pemanggilan data dari database)
+            onPressed:
+                fetchBooks, // Ketika tombol ditekan, panggil fungsi fetchBooks(merespon hasil dari pemanggilan data dari database)
           ),
         ],
       ),
       body: books.isEmpty
           ? const Center(
-              child: CircularProgressIndicator()) // if / Jika data masih kosong maka tampilkan loading
+              child:
+                  CircularProgressIndicator()) // if / Jika data masih kosong maka tampilkan loading
           : ListView.builder(
               // else / Jika data sudah ada maka tampilkan daftar buku
               itemCount: books.length,
@@ -63,7 +69,7 @@ class _BookListPageState extends State<BookListPage> {
                     children: [
                       ListTile(
                         title: Text(
-                          book['title'] ?? "No Title",
+                          book['title'] ?? "Not Title",
                           style: const TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
