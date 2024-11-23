@@ -1,3 +1,4 @@
+import 'package:crud_perpustakaan/pages/insert_page.dart';
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -118,11 +119,13 @@ class _BookListPageState extends State<BookListPage> {
                                 },
                                 icon: const Icon(
                                   Icons.edit,
+                                  size: 20,
                                   color: Colors.blue,
                                 )),
                             IconButton(
                               onPressed: () {
                                 showDialog(
+                                    // Ketika tombol ditekan, maka menampilkan notifikasi
                                     context: context,
                                     builder: (BuildContext context) {
                                       return AlertDialog(
@@ -149,6 +152,7 @@ class _BookListPageState extends State<BookListPage> {
                               },
                               icon: const Icon(
                                 Icons.delete,
+                                size: 20,
                                 color: Colors.red,
                               ),
                             )
@@ -157,12 +161,24 @@ class _BookListPageState extends State<BookListPage> {
                       ),
                       const SizedBox(
                         height: 10,
-                      )
+                      ),
                     ],
                   ),
                 );
               },
             ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(
+            // Memindahkan user ke halaman tambah buku
+            context,
+            MaterialPageRoute(
+              builder: (context) => const AddBookPage(),
+            ),
+          );
+        },
+        child: const Icon(Icons.add),
+      ),
     );
   }
 }
