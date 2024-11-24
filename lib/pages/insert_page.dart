@@ -1,5 +1,6 @@
 import 'package:crud_perpustakaan/pages/home_page.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 // import 'package:flutter/widgets.dart';
 // import 'package:google_fonts/google_fonts.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -97,9 +98,10 @@ class _AddBookPageState extends State<AddBookPage> {
                       }
                       return null;
                     },
-                    decoration: const InputDecoration(
+                    decoration: InputDecoration(
+                        prefixIcon: const Icon(Icons.title_rounded),
                         labelText: 'Title',
-                        labelStyle: TextStyle(
+                        labelStyle: GoogleFonts.notoSansGeorgian(
                           color: Colors.grey,
                           fontWeight: FontWeight.bold,
                         )),
@@ -113,9 +115,10 @@ class _AddBookPageState extends State<AddBookPage> {
                       }
                       return null;
                     },
-                    decoration: const InputDecoration(
+                    decoration: InputDecoration(
+                        prefixIcon: const Icon(Icons.person),
                         labelText: 'Author',
-                        labelStyle: TextStyle(
+                        labelStyle: GoogleFonts.notoSansGeorgian(
                           color: Colors.grey,
                           fontWeight: FontWeight.bold,
                         )),
@@ -129,9 +132,10 @@ class _AddBookPageState extends State<AddBookPage> {
                       }
                       return null;
                     },
-                    decoration: const InputDecoration(
+                    decoration: InputDecoration(
+                        prefixIcon: const Icon(Icons.description_outlined),
                         labelText: 'Description',
-                        labelStyle: TextStyle(
+                        labelStyle: GoogleFonts.notoSansGeorgian(
                           color: Colors.grey,
                           fontWeight: FontWeight.bold,
                         )),

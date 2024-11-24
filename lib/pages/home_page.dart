@@ -1,5 +1,6 @@
 import 'package:crud_perpustakaan/pages/insert_page.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class BookListPage extends StatefulWidget {
@@ -35,9 +36,9 @@ class _BookListPageState extends State<BookListPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
+        title: Text(
           'Daftar Buku',
-          style: TextStyle(
+          style: GoogleFonts.notoSansGeorgian(
             fontSize: 20,
             fontWeight: FontWeight.bold,
           ),
@@ -71,8 +72,8 @@ class _BookListPageState extends State<BookListPage> {
                       ListTile(
                         title: Text(
                           book['title'] ?? "Not Title",
-                          style: const TextStyle(
-                            fontSize: 16,
+                          style: GoogleFonts.ptSans(
+                            fontSize: 18,
                             fontWeight: FontWeight.bold,
                             color: Colors.black,
                           ),
@@ -82,10 +83,10 @@ class _BookListPageState extends State<BookListPage> {
                           children: [
                             Text(
                               book['author'] ?? "No Author",
-                              style: const TextStyle(
+                              style: GoogleFonts.ptSans(
                                 fontSize: 12,
+                                fontWeight: FontWeight.bold,
                                 color: Colors.black,
-                                fontStyle: FontStyle.italic,
                               ),
                             ),
                             const SizedBox(
@@ -93,7 +94,7 @@ class _BookListPageState extends State<BookListPage> {
                             ),
                             Text(
                               book['description'] ?? "No Description",
-                              style: const TextStyle(
+                              style: GoogleFonts.ptSans(
                                 fontSize: 10,
                                 color: Colors.black,
                                 // fontFamily: 'Poppins',
@@ -177,7 +178,7 @@ class _BookListPageState extends State<BookListPage> {
             ),
           );
         },
-        child: const Icon(Icons.add),
+        child: const Icon(Icons.post_add_outlined),
       ),
     );
   }
