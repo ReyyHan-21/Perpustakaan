@@ -1,5 +1,7 @@
 import 'package:crud_perpustakaan/pages/home_page.dart';
+import 'package:crud_perpustakaan/pages/Auth/login_page.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 Future<void> main() async {
@@ -17,10 +19,28 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       title: 'Digital Library',
-      home: BookListPage(),
+      home: FutureBuilder(
+        future: _checkLoginStatus(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(
+                child:
+                    CircularProgressIndicator()); // Menampilkan loader saat memeriksa status login
+          } else {
+            return snapshot.data as bool
+                ? const BookListPage()
+                : const LoginPage(); // Arahkan ke HomePage jika sudah login, jika tidak ke LoginPage
+          }
+        },
+      ),
       debugShowCheckedModeBanner: false,
     );
+  }
+
+  Future<bool> _checkLoginStatus() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.getBool('isLoggedIn') ?? false; // Mengembalikan status login
   }
 }

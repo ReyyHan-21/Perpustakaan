@@ -1,7 +1,10 @@
 import 'package:crud_perpustakaan/pages/insert_page.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+
+import 'Auth/login_page.dart';
 
 class BookListPage extends StatefulWidget {
   const BookListPage({super.key});
@@ -42,6 +45,16 @@ class _BookListPageState extends State<BookListPage> {
             fontSize: 20,
             fontWeight: FontWeight.bold,
           ),
+        ),
+        leading: IconButton(
+          icon: const Icon(Icons.logout_outlined),
+          onPressed: () async {
+            // Logout dan kembali ke halaman login
+            SharedPreferences prefs = await SharedPreferences.getInstance();
+            await prefs.setBool('isLoggedIn', false);
+            Navigator.of(context).pushReplacement(
+                MaterialPageRoute(builder: (context) => const LoginPage()));
+          },
         ),
         centerTitle: true,
         actions: [
