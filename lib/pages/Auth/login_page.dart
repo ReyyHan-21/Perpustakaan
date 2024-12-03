@@ -1,4 +1,5 @@
 import 'package:crud_perpustakaan/pages/home_page.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -14,6 +15,13 @@ class _LoginPageState extends State<LoginPage> {
   // final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  bool _isHidden = true;
+
+  void _visiblePassword() {
+    setState(() {
+      _isHidden = !_isHidden;
+    });
+  }
 
   @override
   void initState() {
@@ -154,9 +162,14 @@ class _LoginPageState extends State<LoginPage> {
                     Icons.key_rounded,
                     size: 28,
                     color: Color(0xFF2345B5),
+                  ),
+                  suffixIcon: InkWell(
+                    onTap: _visiblePassword,
+                    child: Icon(
+                        _isHidden ? Icons.visibility_off : Icons.visibility),
                   )),
               obscureText:
-                  true, // Menampilkan tampilan bintang agar password tidak terlihat
+                  _isHidden, // Menampilkan tampilan bintang agar password tidak terlihat
             ),
             const SizedBox(height: 15),
             Container(
@@ -197,6 +210,82 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ), // Teks pada tombol
             ),
+            const SizedBox(height: 20),
+            Center(
+              child: RichText(
+                text: TextSpan(
+                  children: [
+                    TextSpan(
+                      text: 'Tidak Punya Akun?',
+                      style: GoogleFonts.poppins(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
+                    const WidgetSpan(
+                      child: SizedBox(
+                        width: 5,
+                      ),
+                    ),
+                    TextSpan(
+                      text: 'Daftar Sekarang',
+                      style: GoogleFonts.poppins(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w400,
+                        color: const Color(0xFF2345B5),
+                      ),
+                      recognizer: TapGestureRecognizer(),
+                    )
+                  ],
+                ),
+              ),
+            ),
+            const SizedBox(height: 70),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Flexible(
+                    child: Container(
+                  height: 2,
+                  color: Colors.black,
+                )),
+                Text(
+                  'Atau Masuk Dengan',
+                  style: GoogleFonts.poppins(
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                Flexible(
+                    child: Container(
+                  height: 2,
+                  color: Colors.black,
+                ))
+              ],
+            ),
+            const SizedBox(height: 50),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                IconButton(
+                  onPressed: () {},
+                  icon: Image.asset('images/apple.png'),
+                  // iconSize: 25,
+                ),
+                const SizedBox(width: 63),
+                IconButton(
+                  onPressed: () {},
+                  icon: Image.asset('images/google.png'),
+                  // iconSize: 25,
+                ),
+                const SizedBox(width: 63),
+                IconButton(
+                  onPressed: () {},
+                  icon: Image.asset('images/fb.png'),
+                  // iconSize: 25,
+                ),
+              ],
+            )
           ],
         ),
       ),
