@@ -48,7 +48,7 @@ class _LoginPageState extends State<LoginPage> {
 
   void _login() async {
     if (_emailController.text == 'user@example.com' &&
-        _passwordController.text == 'pass') {
+        _passwordController.text == '1234') {
       SharedPreferences prefs = await SharedPreferences
           .getInstance(); // Mengambil instance SharedPreferences
       await prefs.setBool('isLoggedIn', true); // Menyimpan Status Login
