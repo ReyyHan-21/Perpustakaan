@@ -69,90 +69,92 @@ class _AddBookPageState extends State<AddBookPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: const Text(
-            'Add New Book',
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          centerTitle: true,
-          leading: IconButton(
-            icon: const Icon(Icons.arrow_back_ios_new),
-            onPressed: () {
-              Navigator.pop(context, true);
-            },
+      appBar: AppBar(
+        title: const Text(
+          'Add New Book',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
           ),
         ),
-        body: Container(
-            padding: const EdgeInsets.fromLTRB(25, 20, 25, 0),
-            child: Form(
-              key: _formKey,
-              child: Column(
-                children: [
-                  TextFormField(
-                    controller: _titleController,
-                    validator: (value) {
-                      // Untuk mengecek atau validasi apakah field tersebut kosong atau tidak
-                      if (value == null || value.isEmpty) {
-                        // Jika field2 tersebut kosong maka akan menampilkan pesan error
-                        return 'Please enter the text';
-                      }
-                      return null;
-                    },
-                    decoration: InputDecoration(
-                        prefixIcon: const Icon(Icons.title_rounded),
-                        labelText: 'Title',
-                        labelStyle: GoogleFonts.notoSansGeorgian(
-                          color: Colors.grey,
-                          fontWeight: FontWeight.bold,
-                        )),
-                  ),
-                  const SizedBox(height: 10),
-                  TextFormField(
-                    controller: _authorController,
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Please enter the text';
-                      }
-                      return null;
-                    },
-                    decoration: InputDecoration(
-                        prefixIcon: const Icon(Icons.person),
-                        labelText: 'Author',
-                        labelStyle: GoogleFonts.notoSansGeorgian(
-                          color: Colors.grey,
-                          fontWeight: FontWeight.bold,
-                        )),
-                  ),
-                  const SizedBox(height: 10),
-                  TextFormField(
-                    controller: _descriptionController,
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Please enter the text';
-                      }
-                      return null;
-                    },
-                    decoration: InputDecoration(
-                        prefixIcon: const Icon(Icons.description_outlined),
-                        labelText: 'Description',
-                        labelStyle: GoogleFonts.notoSansGeorgian(
-                          color: Colors.grey,
-                          fontWeight: FontWeight.bold,
-                        )),
-                  ),
-                  const SizedBox(height: 20),
-                  ElevatedButton(
-                    onPressed: () => _addBook(context),
-                    child: const Text(
-                      'Add Book',
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold, color: Colors.grey),
-                    ),
-                  )
-                ],
+        centerTitle: true,
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back_ios_new),
+          onPressed: () {
+            Navigator.pop(context, true);
+          },
+        ),
+      ),
+      body: Container(
+        padding: const EdgeInsets.fromLTRB(25, 20, 25, 0),
+        child: Form(
+          key: _formKey,
+          child: Column(
+            children: [
+              TextFormField(
+                controller: _titleController,
+                validator: (value) {
+                  // Untuk mengecek atau validasi apakah field tersebut kosong atau tidak
+                  if (value == null || value.isEmpty) {
+                    // Jika field2 tersebut kosong maka akan menampilkan pesan error
+                    return 'Please enter the text';
+                  }
+                  return null;
+                },
+                decoration: InputDecoration(
+                    prefixIcon: const Icon(Icons.title_rounded),
+                    labelText: 'Title',
+                    labelStyle: GoogleFonts.notoSansGeorgian(
+                      color: Colors.grey,
+                      fontWeight: FontWeight.bold,
+                    )),
               ),
-            )));
+              const SizedBox(height: 10),
+              TextFormField(
+                controller: _authorController,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter the text';
+                  }
+                  return null;
+                },
+                decoration: InputDecoration(
+                    prefixIcon: const Icon(Icons.person),
+                    labelText: 'Author',
+                    labelStyle: GoogleFonts.notoSansGeorgian(
+                      color: Colors.grey,
+                      fontWeight: FontWeight.bold,
+                    )),
+              ),
+              const SizedBox(height: 10),
+              TextFormField(
+                controller: _descriptionController,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter the text';
+                  }
+                  return null;
+                },
+                decoration: InputDecoration(
+                    prefixIcon: const Icon(Icons.description_outlined),
+                    labelText: 'Description',
+                    labelStyle: GoogleFonts.notoSansGeorgian(
+                      color: Colors.grey,
+                      fontWeight: FontWeight.bold,
+                    )),
+              ),
+              const SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: () => _addBook(context),
+                child: const Text(
+                  'Add Book',
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold, color: Colors.grey),
+                ),
+              )
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }
